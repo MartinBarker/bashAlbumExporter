@@ -51,6 +51,13 @@ individualRender () {
 
 fullAlbum () {
   rm concat.txt
+  rm concatAudio.mp3
+  declare -a filenames=()
+  for filename in *.$inputFormat
+  do
+  	filenames+=("$filename")
+  done
+
   #create concat.txt file with each filename
   for filename in "${filenames[@]}"
 	do
