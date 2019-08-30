@@ -1,5 +1,7 @@
 # bashAlbumExporter
+This bash script uses ffmpeg to turn audio files (mp3 / flac) and an image into mp4 videos you can upload to YouTube. 
 
+ ./script.sh media/ mp3 front.jpg 1 . 1   
 
 
 If you want to change the output video filename; use the last two parameters x and x
@@ -8,11 +10,6 @@ If you want to change the output video filename; use the last two parameters x a
 If you don't want to change the video filename; just don't include those last two paramenters when you run the script: 
 $ ./script.sh media/ mp3 front.jpg 1 - 1
 
-
-
-
-# bashAlbumExporter
-Place this script inside a folder with audio files and an image to export video files for each song. This script uses ffmpeg to export the videos, and uses command line arguments to specify background image, file type, output filename format, and whether or not to render a full album video. Run this script on linux / MACOSX / bash terminals.
 
 Example:
 ```
