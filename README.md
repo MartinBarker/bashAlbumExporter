@@ -15,17 +15,17 @@ $ chmod 0755 bashAlbumExporter.sh
 $ ./bashAlbumExporter.sh media/ mp3 front.jpg 1 . 1
 ```
 
-## script command line format:
+# script command line format:
 ```
 $./bashAlbumExporter.sh inputFolderPath audioInputFormat imageFilename fullAlbumOptionInt removeUpTo_char removeUpTo_offset
 ```
-# # required command line arguments:
+# required command line arguments:
 - inputFolderPath = filepath to inputFolder from where your script is placed.
 - audioInputFormat = File type of the audio files you want to export (mp3, flac).
 - imageFilename = Name of the image file located in the inputFolderPath to use as background for the video.
 - fullAlbumOptionInt = Choice on rendering full album video, 0 = No, 1 = Yes, 2 = Only render full album.
 
-# # optional command line arguments for setting video output filename:
+# optional command line arguments for setting video output filename:
 - removeUpTo_char = Remove text up to the first instance of this char.
 - removeUpTo_offset = Remove this number of chars from the start of the filename.
 
