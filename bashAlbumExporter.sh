@@ -31,6 +31,7 @@ function render {
   if [[ "$1" = *mp3 ]]; then
     echo "individual render, audioInputFormat ends with mp3"        
     ffmpeg -loop 1 -framerate 2 -i "$2/$3" -i "$2/$4" -vf "scale=2*trunc(iw/2):2*trunc(ih/2),setsar=1" -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p "$2/$5.mp4"          
+  
   elif [[ "$1" == *flac ]]; then
     echo "individual render, audioInputFormat ends with flac"
     ffmpeg -loop 1 -framerate 2 -i "$2/$3" -i "$2/$4" -vf "scale=2*trunc(iw/2):2*trunc(ih/2),setsar=1" -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p -strict -2 "$2/$5.mp4"
@@ -137,7 +138,7 @@ function fullAlbum {
     ffmpeg -i "$concatString" -acodec copy $filePath/concatAudio.mp3         
 
     #render video using the long full album audio file
-    ffmpeg -loop 1 -framerate 2 -i "$filePath/$imageFilename" -i "$filePath/concatAudio.mp3" -vf "scale=2*trunc(iw/2):2*trunc(ih/2),setsar=1" -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p "$filePath/fullAlbum.avi" 
+    ffmpeg -loop 1 -framerate 2 -i "$filePath/$imageFilename" -i "$filePath/concatAudio.mp3" -vf "scale=2*trunc(iw/2):2*trunc(ih/2),setsar=1" -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p "$filePath/fullAlbum.mp4" 
 
     rm "$filePath/concatAudio.mp3"
 
@@ -149,13 +150,13 @@ function fullAlbum {
     do 
       echo "file '$f'" >> inputs.txt; 
     done
-    ffmpeg -f concat -safe 0 -i inputs.txt -safe 0 "$filePath/concatAudio.wav"
+    ffmpeg -f concat -safe 0 -i inputs.txt -safe 0 "$filePath/concatAudio.mp3"
     rm inputs.txt
 
     #render full album vid
-    ffmpeg -loop 1 -framerate 2 -i "$filePath/$imageFilename" -i "$filePath/concatAudio.wav" -vf "scale=2*trunc(iw/2):2*trunc(ih/2),setsar=1" -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p "$filePath/fullAlbum.avi" 
+    ffmpeg -loop 1 -framerate 2 -i "$filePath/$imageFilename" -i "$filePath/concatAudio.mp3" -vf "scale=2*trunc(iw/2):2*trunc(ih/2),setsar=1" -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p -strict -2 "$filePath/fullAlbum.mp4" 
 
-    rm "$filePath/concatAudio.wav"
+    rm "$filePath/concatAudio.mp3"
 
   else
     echo "concatAudio; audioInputFormat ends with something unrecognized"
