@@ -23,13 +23,17 @@ render () {
   if [[ "$1" = *mp3 ]]; then
     outputFilename=$2
     if [[ "$removeUpTo_char" != "." ]]; then
-      #remove all text after and including period from filename
-      outputFilename="${2%.*}"
-      outputFilename="${outputFilename#*$removeUpTo_char}"
-    fi
-    outputFilename="${outputFilename:$removeUpTo_offset}"
+      echo "removeUpTo_char is present"
+      #remove letters up to the first occurance of this char: removeUpTo_char
 
-    ffmpeg -loop 1 -y -i "$imagePath" -i "$2" -shortest -acodec copy -vcodec mjpeg -s 1920x1080 "$outputFilename.mp4"
+
+      #remove all text after and including period from filename
+      #outputFilename="${2%.*}"
+      #outputFilename="${outputFilename#*$removeUpTo_char}"
+    fi
+    #outputFilename="${outputFilename:$removeUpTo_offset}"
+
+    #ffmpeg -loop 1 -y -i "$imagePath" -i "$2" -shortest -acodec copy -vcodec mjpeg -s 1920x1080 "$outputFilename.mp4"
 
   elif [[ "$1" == *flac ]]; then
     echo "inputFormat ends with flac"
