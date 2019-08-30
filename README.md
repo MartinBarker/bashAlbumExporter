@@ -4,12 +4,16 @@ This bash script uses ffmpeg to turn audio files (mp3 / flac) and an image into 
  ./bashAlbumExporter.sh media/ mp3 front.jpg 1 . 1   
 ```
 
-If you want to change the output video filename; use the last two parameters x and x
-$ ./script.sh media/ mp3 front.jpg 1 - 1
-
-If you don't want to change the video filename; just don't include those last two paramenters when you run the script: 
-$ ./script.sh media/ mp3 front.jpg 1 
-
+# How to use:
+1. Download the bashAlbumExporter.sh file
+2. Run this command to give the script permissions
+```
+$ chmod 0755 bashAlbumExporter.sh
+```
+3. Run the script with this command
+```
+$ ./bashAlbumExporter.sh media/ mp3 front.jpg 1 . 1
+```
 
 ## script command line format:
 ```
@@ -47,15 +51,4 @@ Output video files:
 Song name.mp4
 Martin's Song.mp4
 fullAlbum.mp4
-```
-
-# How to use:
-1. Download the bashAlbumExporter.sh file
-2. Run this command to give the script permissions
-```
-$ chmod 0755 bashAlbumExporter.sh
-```
-3. Run the script with this command
-```
-$ ./bashAlbumExporter.sh media/ mp3 front.jpg 1 - 1
 ```
