@@ -40,10 +40,15 @@ front.jpg
 $ ./bashAlbumExporter.sh media/ mp3 front.jpg 1 - 1
 ```
 inputFolderPath = media/
+
 audioInputFormat = mp3
+
 imageFilename = front.jpg
+
 fullAlbumOptionInt = 1
+
 removeUpTo_char = -
+
 removeUpTo_offset = 1
 
 ```
