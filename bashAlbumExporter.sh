@@ -144,14 +144,17 @@ function fullAlbum {
 
   elif [[ "$audioInputFormat" == *flac ]]; then
     echo "concatAudio; audioInputFormat ends with flac"
-
-    touch inputs.txt
+    
+    # build concatenated mp3 file using bash arrays and concat filter_complex
+    files=()
+    i=0
     for f in $filePath/*.flac; 
     do 
-      echo "file '$f'" >> inputs.txt; 
+        filter+="[$((i++)):a:0]"
+        files+=(-i "$f")
     done
-    ffmpeg -f concat -safe 0 -i inputs.txt -safe 0 "$filePath/concatAudio.mp3"
-    rm inputs.txt
+    filter+="concat=n=$i:v=0:a=1[outa]"
+    ffmpeg "${files[@]}" -filter_complex "$filter" -map '[outa]' "$filePath/concatAudio.mp3"
 
     #render full album vid
     ffmpeg -loop 1 -framerate 2 -i "$filePath/$imageFilename" -i "$filePath/concatAudio.mp3" -vf "scale=2*trunc(iw/2):2*trunc(ih/2),setsar=1" -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p -strict -2 "$filePath/fullAlbum.mp4" 
